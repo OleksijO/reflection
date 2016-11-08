@@ -1,4 +1,7 @@
-package training;
+package training.entity;
+
+import training.annotation.Constructor;
+import training.annotation.ReflectionInvocation;
 
 import java.util.Date;
 
@@ -12,13 +15,16 @@ public class Data {
     public Data() {
     }
 
+    @Constructor(enabled = false)
     protected Data(Date date) {
         this.date = date;
     }
 
+    @ReflectionInvocation(enabled = true)
     public Date getDate() {
         return date;
     }
+
 
     public void setDate(Date date) {
         this.date = date;
@@ -35,11 +41,13 @@ public class Data {
 
     }
 
+    @ReflectionInvocation(enabled = true)
     @Override
     public int hashCode() {
         return date != null ? date.hashCode() : 0;
     }
 
+    @ReflectionInvocation(enabled = false)
     @Override
     public String toString() {
         return "Data{" +

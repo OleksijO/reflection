@@ -1,23 +1,33 @@
-package training;
+package training.entity;
+
+import training.annotation.Constructor;
+import training.annotation.ReflectionInvocation;
 
 import java.util.Date;
 
 /**
  * Created by oleksij.onysymchuk@gmail on 08.11.2016.
  */
-public class NotebookRecord extends Data {
+public class NotebookRecordImpl extends Data implements NotebookRecord {
     private String fullName;
     private String phone;
 
-    NotebookRecord() {
+    NotebookRecordImpl() {
+    }
+    @Deprecated
+    @Constructor(enabled = false)
+    private NotebookRecordImpl(Date date) {
     }
 
-    public NotebookRecord(Date date, String fullName, String phone) {
+    @Constructor(enabled = true)
+    public NotebookRecordImpl(Date date, String fullName, String phone) {
         super(date);
         this.fullName = fullName;
         this.phone = phone;
     }
 
+    @Override
+    @ReflectionInvocation(enabled = true)
     public int getDayCountTillNextBirthday() {
 
         Date now = new Date();
@@ -33,33 +43,44 @@ public class NotebookRecord extends Data {
         return (int) ((nextBirthday.getTime() - today.getTime()) / MILLIS_IN_DAY);
     }
 
+
+    @Override
     public String getFullName() {
         return fullName;
     }
 
+
+    @Override
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
 
+
+    @Override
     public String getPhone() {
         return phone;
     }
 
+
+    @Override
     public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    public Date getDateOfBirth() {
+    @ReflectionInvocation(enabled = true)
+    private Date getDateOfBirth() {
         return super.getDate();
     }
 
+
+    @Override
     public void setDateOfBirth(Date dateOfBirth) {
         super.setDate(dateOfBirth);
     }
 
     @Override
     public String toString() {
-        return "NotebookRecord{" +
+        return "NotebookRecordImpl{" +
                 "dateOfBirth='" + super.getDate() + '\'' +
                 "fullName='" + fullName + '\'' +
                 ", phone='" + phone + '\'' +
@@ -72,7 +93,7 @@ public class NotebookRecord extends Data {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        NotebookRecord that = (NotebookRecord) o;
+        NotebookRecordImpl that = (NotebookRecordImpl) o;
         if (fullName != null ? !fullName.equals(that.fullName) : that.fullName != null) return false;
         return phone != null ? phone.equals(that.phone) : that.phone == null;
 

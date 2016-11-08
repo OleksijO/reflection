@@ -1,4 +1,4 @@
-package training;
+package training.entity;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,7 +13,7 @@ public class NotebookRecordTest {
     @Test
     public void testGetDayCountTillNextBirthday() throws Exception {
         final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        NotebookRecord rec = new NotebookRecord();
+        NotebookRecord rec = new NotebookRecordImpl();
         Date now = new Date();
         Date today = sdf.parse(sdf.format(now));
         today.setHours(0);
@@ -21,9 +21,9 @@ public class NotebookRecordTest {
         tmp.setYear(tmp.getYear() - 10);
         Date tenYearsAgo = new Date(tmp.getTime());
         tenYearsAgo.setHours(0);
-        Date tenYearsAnd30DaysAgo = new Date(tmp.getTime() - NotebookRecord.MILLIS_IN_DAY * 30);
+        Date tenYearsAnd30DaysAgo = new Date(tmp.getTime() - NotebookRecordImpl.MILLIS_IN_DAY * 30);
         tenYearsAnd30DaysAgo.setHours(0);
-        Date nineYearsAnd335DaysAgo = new Date(tmp.getTime() + NotebookRecord.MILLIS_IN_DAY * 30);
+        Date nineYearsAnd335DaysAgo = new Date(tmp.getTime() + NotebookRecordImpl.MILLIS_IN_DAY * 30);
         nineYearsAnd335DaysAgo.setHours(0);
 
         rec.setDateOfBirth(tenYearsAgo);
