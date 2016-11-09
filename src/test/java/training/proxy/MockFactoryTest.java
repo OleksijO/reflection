@@ -1,30 +1,30 @@
-package training.entity.proxy;
+package training.proxy;
 
 import org.junit.Assert;
 import org.junit.Test;
-import training.proxy.MockProxy;
 
 import java.util.Map;
 
 /**
  * Created by oleksij.onysymchuk@gmail on 08.11.2016.
  */
-public class MockProxyTest {
+public class MockFactoryTest {
 
     @Test
     public void getImmutableProxyTest() {
-        TestInterface mockTestObj = MockProxy.getMockProxy(TestInterfaceImpl.class);
+        MockWithMethodCallCountFactory mockFactory = new MockWithMethodCallCountFactory();
+        TestInterface mockTestObj = mockFactory.getMockProxy(TestInterfaceImpl.class);
         mockTestObj.setField(5);
         mockTestObj.toString();
         mockTestObj.getField();
         mockTestObj.getField();
         mockTestObj.getField();
-        Map<String, Integer> methodCallCounters = MockProxy.getMethodCallCounters(mockTestObj);
+        Map<String, Integer> methodCallCounters = mockFactory.getMethodCallCounters(mockTestObj);
         Assert.assertEquals(new Integer(1), methodCallCounters.get("setField"));
         Assert.assertEquals(new Integer(1), methodCallCounters.get("toString"));
         Assert.assertEquals(null, methodCallCounters.get("getClass"));
         Assert.assertEquals(new Integer(3), methodCallCounters.get("getField"));
-        Assert.assertEquals(5, MockProxy.getMethodCallHistory(mockTestObj).size());
+        Assert.assertEquals(5, mockFactory.getMethodCallHistory(mockTestObj).size());
     }
 
 

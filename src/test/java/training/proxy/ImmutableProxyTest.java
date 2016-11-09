@@ -1,7 +1,6 @@
-package training.entity.proxy;
+package training.proxy;
 
 import org.junit.Test;
-import training.proxy.ImmutableProxy;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

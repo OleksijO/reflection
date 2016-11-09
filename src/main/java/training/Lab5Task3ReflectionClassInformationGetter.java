@@ -7,7 +7,14 @@ import training.reflection.service.ReflectionLab5Task3;
 import java.util.Date;
 
 /**
- * Created by oleksij.onysymchuk@gmail on 08.11.2016.
+ * This class represents a solved task 3 of Lab 5.
+ *
+ * С помощью рефлексии вывести имя класса, а также согласно варианта:
+ * Задание 1. Список конструкторов с их параметрами (+модификаторы + маркеры аннотаций)
+ * Задание 2. Модификаторы класса
+ *
+ * @author oleksij.onysymchuk@gmail
+ * @version 1.0 08 NOV 2016
  */
 public class Lab5Task3ReflectionClassInformationGetter {
     public static void main(String[] args) {
@@ -21,9 +28,7 @@ public class Lab5Task3ReflectionClassInformationGetter {
         printMessage("");
         printMessage("Instance class modifiers: ");
         printMessage(reflectionService.getModifiers(rec.getClass()));
-
     }
-
 
     public static void printMessage(String message) {
         System.out.println(message);

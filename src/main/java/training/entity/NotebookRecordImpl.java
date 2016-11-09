@@ -6,26 +6,57 @@ import training.annotation.ReflectionInvocation;
 import java.util.Date;
 
 /**
- * Created by oleksij.onysymchuk@gmail on 08.11.2016.
+ * This class is the implementation of interface NotebookRecord.
+ * Date of birth is stored in super.date field.
+ *
+ * @version 1.0 08 NOV 2016
+ * @author oleksij.onysymchuk@gmail
  */
 public class NotebookRecordImpl extends Data implements NotebookRecord {
+    /**
+     * The value of person's full name
+     */
     private String fullName;
+    /**
+     * The value of person's phone
+     */
     private String phone;
 
+    /**
+     * Default constructor
+     */
     NotebookRecordImpl() {
     }
+
+    /**
+     * Constructor for needs of laboratory work of reflection API study
+     *
+     * @param date
+     */
     @Deprecated
     @Constructor(enabled = false)
     private NotebookRecordImpl(Date date) {
     }
 
+    /**
+     * Initializes all fields of entity
+     *
+     * @param dateOfBirth the value of date of birth to be set
+     * @param fullName the value of person's full name to be set
+     * @param phone The value of person's phone to be set
+     */
     @Constructor(enabled = true)
-    public NotebookRecordImpl(Date date, String fullName, String phone) {
-        super(date);
+    public NotebookRecordImpl(Date dateOfBirth, String fullName, String phone) {
+        super(dateOfBirth);
         this.fullName = fullName;
         this.phone = phone;
     }
 
+    /**
+     * Implementation of interface method {@link NotebookRecord#getDayCountTillNextBirthday()}
+     *
+     * @return Number of days for next Birthday
+     */
     @Override
     @ReflectionInvocation(enabled = true)
     public int getDayCountTillNextBirthday() {
@@ -67,12 +98,20 @@ public class NotebookRecordImpl extends Data implements NotebookRecord {
         this.phone = phone;
     }
 
+    /**
+     * Gets a date from super class and returns it
+     *
+     * @return The value of date of birth
+     */
     @ReflectionInvocation(enabled = true)
     private Date getDateOfBirth() {
         return super.getDate();
     }
 
 
+    /**
+     * Stores a date to super class
+     */
     @Override
     public void setDateOfBirth(Date dateOfBirth) {
         super.setDate(dateOfBirth);

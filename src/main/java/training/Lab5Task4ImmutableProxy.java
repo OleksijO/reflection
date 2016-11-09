@@ -8,7 +8,17 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 
 /**
- * Created by oleksij.onysymchuk@gmail on 08.11.2016.
+ * This class represents a solved task 4 of Lab 5.
+ *
+ *  Сделать для класса прокси (для Immutability), который пропускает обращение к getter' ам ,
+ *  а на сеттеры — бросает эксепшены.
+ *
+ *  Class ImmutableProxy has a static method for creating immutable proxies.
+ *
+ *  SOLVING OF TASK 5 and 6  are implemented in main and test in training.proxy
+ *
+ * @author oleksij.onysymchuk@gmail
+ * @version 1.0 08 NOV 2016
  */
 public class Lab5Task4ImmutableProxy {
     public static void main(String[] args) throws InvocationTargetException, IllegalAccessException {

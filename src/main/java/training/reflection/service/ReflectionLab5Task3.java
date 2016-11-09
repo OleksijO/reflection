@@ -7,11 +7,20 @@ import java.lang.reflect.Modifier;
 import java.util.*;
 
 /**
- * Created by oleksij.onysymchuk@gmail on 08.11.2016.
+ * This class represents a util class for getting some information from reflection API
+ * in text format for further delivering to user view (console)
+ *
+ *
+ * @version 1.0 08 NOV 2016
+ * @author oleksij.onysymchuk@gmail
  */
 public class ReflectionLab5Task3 {
     private static final String NULL_POINTER = "Method parameter can not be null!";
 
+    /**
+     * @param obj the value of studying object
+     * @return The full qualified class name
+     */
     public String getObjectClassName(Object obj) {
         if (obj != null) {
             return obj.getClass().getName();
@@ -19,6 +28,10 @@ public class ReflectionLab5Task3 {
         throw new RuntimeException(NULL_POINTER);
     }
 
+    /**
+     * @param obj the value of studying object
+     * @return List of first line of a constructor with param types, modifiers and annotation presence markers above
+     */
     public List<String> getConstructors(Object obj) {
         if (obj == null) {
             throw new RuntimeException(NULL_POINTER);
@@ -40,11 +53,19 @@ public class ReflectionLab5Task3 {
         return classConstructors;
     }
 
+    /**
+     * @param executable the value of studying object - constructor or method
+     * @return The string of modifiers
+     */
     public String getModifiers(Executable executable) {
         int modifiers = executable.getModifiers();
         return getModifiers(modifiers);
     }
 
+    /**
+     * @param executable the value of studying object - constructor or method
+     * @return The string of parameter types simple names
+     */
     public String getParameters(Executable executable) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < executable.getParameterTypes().length; i++) {
@@ -56,6 +77,10 @@ public class ReflectionLab5Task3 {
         return stringBuilder.toString();
     }
 
+    /**
+     * @param executable the value of studying object - constructor or method
+     * @return The string with line separator of annotation presence markers
+     */
     private String getAnnotations(Executable executable){
         StringBuilder stringBuilder = new StringBuilder();
         int counter =1;
@@ -65,11 +90,20 @@ public class ReflectionLab5Task3 {
         return stringBuilder.toString();
     }
 
+
+    /**
+     * @param clazz the value of studying object - class
+     * @return The string of modifiers
+     */
     public String getModifiers(Class clazz) {
         int modifiers = clazz.getModifiers();
         return getModifiers(modifiers);
     }
 
+    /**
+     * @param modifiers the value of result of getModifiers() method
+     * @return The string of modifiers
+     */
     private String getModifiers(int modifiers) {
         StringBuilder result = new StringBuilder();
         if (Modifier.isAbstract(modifiers)) {
