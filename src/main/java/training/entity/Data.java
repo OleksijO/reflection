@@ -27,7 +27,9 @@ public class Data {
 
 
     public void setDate(Date date) {
-        this.date = date;
+        Date tmpDate = new Date(date.getTime() - (date.getTime()%MILLIS_IN_DAY) );
+        tmpDate.setHours(0);
+        this.date = tmpDate;
     }
 
     @Override
